@@ -1,0 +1,701 @@
+AI Coding Transcript — Modi Invoice Management Prototype
+Tool: Cursor (Composer / coding agent)
+Date: July 13, 2026
+Project: Desktop invoice management app (PDF parse → Supabase sync → roles + reminders)
+========================================================================
+
+--- USER ---
+so we need to build a prototype software for invoice management, in this we will read a pdf for the customer name their due date and amount to be paid, and hence have information on status of various invoices, the software would run on 4-5 systems and the data must be synced on it so basically they all connect to a. database, when a pdf is scanned it goes to the DB and then autoamtically shown in all systems
+
+there would be 2 roles admin and users and user would be different like user1,2,3....each would be assigned an invoice to a by the admin which would be visible to them, now admin can see all invoices and users only which are assigned to them
+
+so we will notifications for when invoice due date is coming so 7 days before a reminder comes on software, a reminder on the date and a reminder every 7 days after it's late
+
+the invoices will be shown as the closest date at the top and thats it
+
+plan out just a prototype for now, no full working right now but enough to show someone
+
+--- ASSISTANT ---
+I'll check the workspace and clarify a couple of product choices so the prototype plan matches what you want to demo.
+[Tool call: Glob]
+[Tool call: Shell]
+
+--- ASSISTANT ---
+Empty project folder — greenfield. One decision will shape the prototype stack:
+[Tool call: SwitchMode]
+
+--- ASSISTANT ---
+[Tool call: CreatePlan]
+
+--- USER ---
+now so we don't need to do a webapp, let's do software itself but one thing we can leave is connection to an actual database but we can show how we toggle between different admin and users (without login rn), scan a pdf to show how to converts it into data and the layout of the pdf I can share with you later on plus how admin assigns invoices can be shown and also everything else regarding invoices we talked about
+
+also show we can connect to DB on the internet
+
+in short no actual DB connection yet and no login
+
+--- ASSISTANT ---
+Updating the plan for a desktop prototype: role toggle (no login), local mock data, PDF→data demo, and a visible “remote DB” placeholder—no live DB yet.
+[Tool call: Read]
+
+--- ASSISTANT ---
+[Tool call: Write]
+
+--- ASSISTANT ---
+Updated the plan for a **desktop prototype**, not a web app.
+
+**What we’re building now**
+- Electron desktop app (real window, not a browser)
+- **No login** — toggle Admin / User 1 / User 2 / User 3 in the UI
+- **No live DB** — invoices live in a local in-memory/JSON store
+- PDF scan → extract customer / due date / amount (edit before save); your layout can be wired in when you share a sample
+- Admin assign, role-filtered lists, due-date sort, in-app reminders (7 days before / on due / every 7 days late)
+- A **Database** screen that shows remote URL + “Not connected — local data” so you can demo the multi-machine sync story without wiring it yet
+
+**Explicitly out for this prototype:** real internet DB, auth, and live sync across PCs.
+
+When you’re happy with this direction, say the word and we can start building. Whenever you have the invoice PDF layout, share it and we’ll tune extraction to match.
+
+--- USER ---
+[Image]
+<image_files>
+The following images were provided by the user and saved to the workspace for future use:
+1. /Users/arkin/.cursor/projects/Users-arkin-Desktop-modi/assets/Screenshot_2026-07-13_at_12.49.09_PM-1f6080e3-a9ee-4a0e-88c2-fcd225549982.png
+
+These images can be copied for use in other locations.
+</image_files>
+yes go ahead and build it, and we will run it locally only for now so no need to make the exe as of now and now start building
+
+and use the image as reference for UI, but use red and white and software is being made for MODI ELECTRICALS
+
+--- ASSISTANT ---
+Building the Electron desktop prototype with a red/white MODI ELECTRICALS UI from your reference. Scaffolding the app and core flows next.
+[Tool call: Read]
+[Tool call: Read]
+[Tool call: TodoWrite]
+
+--- ASSISTANT ---
+Scaffolding the Electron + Vite + React project and core app structure.
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: Shell]
+
+--- ASSISTANT ---
+Skipping `electron-vite` due to a Vite version conflict — using a simpler Electron + Vite setup instead.
+[Tool call: Shell]
+[Tool call: Read]
+[Tool call: Glob]
+
+--- ASSISTANT ---
+[Tool call: Shell]
+
+--- ASSISTANT ---
+Creating the Electron shell, store, and full UI next.
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+
+--- ASSISTANT ---
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+
+--- ASSISTANT ---
+[Tool call: Write]
+[Tool call: Write]
+
+--- ASSISTANT ---
+Building layout and page components to match the reference dashboard.
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+
+--- ASSISTANT ---
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+
+--- ASSISTANT ---
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+
+--- ASSISTANT ---
+[Tool call: Read]
+[Tool call: Read]
+[Tool call: Delete]
+[Tool call: StrReplace]
+
+--- ASSISTANT ---
+[Tool call: Shell]
+[Tool call: Write]
+[Tool call: StrReplace]
+[Tool call: Read]
+
+--- ASSISTANT ---
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: Shell]
+
+--- ASSISTANT ---
+Fixing incorrect import paths and the chart type error.
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: Grep]
+
+--- ASSISTANT ---
+[Tool call: Shell]
+
+--- ASSISTANT ---
+ScanPage imports were one level too deep — fixing those and the seed types.
+[Tool call: StrReplace]
+[Tool call: Write]
+
+--- ASSISTANT ---
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: Shell]
+[Tool call: TodoWrite]
+
+--- ASSISTANT ---
+[Tool call: AwaitShell]
+
+--- ASSISTANT ---
+Electron binary download may be blocked — restarting the app with full network access.
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: AwaitShell]
+
+--- ASSISTANT ---
+Electron is starting as plain Node — checking the install and fixing the launcher.
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: Shell]
+
+--- ASSISTANT ---
+Cursor sets `ELECTRON_RUN_AS_NODE=1`, which breaks Electron — unsetting it in the launch script.
+[Tool call: StrReplace]
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: AwaitShell]
+
+--- ASSISTANT ---
+[Tool call: AwaitShell]
+[Tool call: Read]
+
+--- ASSISTANT ---
+[Tool call: Read]
+
+--- ASSISTANT ---
+Fixing infinite re-renders from selectors that return new arrays on every call.
+[Tool call: Write]
+[Tool call: Write]
+
+--- ASSISTANT ---
+[Tool call: Grep]
+
+--- ASSISTANT ---
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+
+--- ASSISTANT ---
+[Tool call: StrReplace]
+[Tool call: Read]
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: AwaitShell]
+
+--- ASSISTANT ---
+[Tool call: AwaitShell]
+[Tool call: Read]
+
+--- ASSISTANT ---
+[Tool call: GetMcpTools]
+
+--- ASSISTANT ---
+Fixing a small pluralization bug in the reminder banner.
+[Tool call: StrReplace]
+[Tool call: Read]
+
+--- ASSISTANT ---
+Tweaking sort so unpaid invoices by due date appear first — paid ones were floating to the top.
+[Tool call: StrReplace]
+
+--- ASSISTANT ---
+Prototype is up. Electron is running locally with a red/white **MODI ELECTRICALS** dashboard.
+
+### Run it
+```bash
+cd /Users/arkin/Desktop/modi
+npm run dev
+```
+(Browser-only: `npm run dev:web`)
+
+### What’s in the demo
+- **Role toggle** in the sidebar (Admin / User 1–3) — no login
+- **Dashboard** with reminder banner, KPIs, charts, invoice table
+- **Scan PDF** (admin) — extract customer / due date / amount, confirm, save  
+  Sample file: `sample/modi-sample-invoice.pdf`
+- **Assign** invoices from the table or detail modal
+- **Notifications** (bell) for due soon / due today / overdue
+- **Database** page — remote connection UI, stays local for now
+- List sorted by closest unpaid due date first
+
+Share your real invoice PDF layout whenever you’re ready and we can tighten the field extraction.
+
+--- USER ---
+Briefly inform the user about the task result and perform any follow-up actions (if needed). If there's no follow-ups needed, don't explicitly say that.
+
+--- USER ---
+Briefly inform the user about the task result and perform any follow-up actions (if needed). If there's no follow-ups needed, don't explicitly say that.
+
+--- USER ---
+Briefly inform the user about the task result and perform any follow-up actions (if needed). If there's no follow-ups needed, don't explicitly say that.
+
+--- ASSISTANT ---
+[Tool call: Read]
+
+--- ASSISTANT ---
+Those earlier start attempts failed while we were fixing Electron (port conflict / `ELECTRON_RUN_AS_NODE`). The working process is still running — Vite is on **http://localhost:5173/** and the Electron window should be open.
+
+--- USER ---
+remove the graphs from the dashboard
+
+--- ASSISTANT ---
+[Tool call: StrReplace]
+[Tool call: Delete]
+
+--- ASSISTANT ---
+Removed the charts from the dashboard. It now shows the reminder banner, overview cards, and invoice table only.
+
+--- USER ---
+now when I connect an actual DB to this I would need wifi right so can you have that feature added too and actuall make it such that we can connect an actual DB with the schema, so should we do SQL or mongoDB ?
+
+--- ASSISTANT ---
+For this app, use SQL (Postgres) — invoices, users, and assignments are relational, and it fits multi-PC sync with row-level security. MongoDB would fight that structure. Checking the current DB UI, then wiring real Postgres (Supabase) plus an online/network check.
+[Tool call: Read]
+[Tool call: Read]
+[Tool call: Read]
+[Tool call: Read]
+
+--- ASSISTANT ---
+[Tool call: Read]
+[Tool call: Read]
+[Tool call: TodoWrite]
+
+--- ASSISTANT ---
+Using **Postgres (Supabase)** — better for invoices, assignments, and multi-PC sync. Adding schema, real connect, and online/network checks.
+[Tool call: Shell]
+[Tool call: Write]
+
+--- ASSISTANT ---
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+
+--- ASSISTANT ---
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: StrReplace]
+
+--- ASSISTANT ---
+[Tool call: Write]
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: StrReplace]
+[Tool call: Shell]
+[Tool call: TodoWrite]
+
+--- ASSISTANT ---
+**Use SQL (Postgres via Supabase), not MongoDB.** Invoices, assignees, and roles are relational — Postgres fits that and multi-PC sync better.
+
+### What’s added
+- **Online / Wi‑Fi check** — top bar shows Online/Offline; Connect is blocked when offline
+- **Real DB connect** — paste Supabase URL + anon key on the Database page
+- **Schema** — [`supabase/schema.sql`](supabase/schema.sql) (`app_users`, `invoices`, RLS, Realtime)
+- When connected: create / assign / status write to Postgres; other open apps refresh via Realtime
+
+### How to hook it up
+1. Create a project at [supabase.com](https://supabase.com) (needs internet)
+2. SQL Editor → run `supabase/schema.sql`
+3. Copy **Project URL** + **anon key** into the app → **Connect database**
+
+Without credentials it still runs fully on local data.
+
+--- USER ---
+great work, how is it connecting to wifi btw ??
+
+--- ASSISTANT ---
+It doesn’t connect to Wi‑Fi itself — that stays with the OS (macOS Wi‑Fi / ethernet). The app only **detects** whether you’re already online.
+
+In [`src/lib/network.ts`](src/lib/network.ts) it does two things:
+
+1. **`navigator.onLine`** — browser/Electron flag for “network interface looks up,” plus `online` / `offline` events when that changes.
+2. **A quick internet probe** — `fetch('https://www.gstatic.com/generate_204', { mode: 'no-cors' })` with a short timeout, so it’s not only “Wi‑Fi connected” but “can reach the internet” (needed for Supabase).
+
+That status feeds the **Online / Offline** pill in the top bar and the Database page. If offline, **Connect database** stays disabled, because a cloud Postgres URL won’t work without internet.
+
+So: Wi‑Fi join = your Mac; our code = “are we online enough to talk to the DB?”
+
+--- USER ---
+so basically when I give the exe to a windows system if they have wifi connected our app gets wifi too ?
+
+--- ASSISTANT ---
+Yes. If the Windows PC is already on Wi‑Fi (or ethernet) with internet, the app uses that same connection automatically — same as Chrome or any other program.
+
+You don’t give the app its own Wi‑Fi. The `.exe` just talks over whatever network Windows is using. If Wi‑Fi is off or there’s no internet, the app will show Offline and remote DB connect won’t work until the PC is online again.
+
+(One caveat: you haven’t packaged a Windows `.exe` yet — when you do, this same network behavior applies.)
+
+--- USER ---
+run it locally
+
+--- ASSISTANT ---
+[Tool call: Shell]
+
+--- ASSISTANT ---
+Port 5173 is in use by another project, so I'll start MODI on 5174.
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: AwaitShell]
+
+--- ASSISTANT ---
+[Tool call: AwaitShell]
+[Tool call: Read]
+
+--- ASSISTANT ---
+[Tool call: AwaitShell]
+
+--- ASSISTANT ---
+It’s running. The Electron window for **MODI ELECTRICALS** should be open.
+
+Vite is on http://localhost:5174/ (5173 was already used by another app).
+
+--- USER ---
+so what we will change now, instead of having individual invoices what we want now is that one can upload a pdf like this@/Users/arkin/Desktop/apex.pdf and what we put this invoice under the name of the party name along with the products, pricing , date when it came in
+
+and each party will have it's own section which will contain all the invoices along with it a ledger like this @/Users/arkin/Desktop/JAI CHAND.pdf to show total owed by party and how much came in
+
+- each invoice of the party can have a different deadline which will be set by input and total amount lended by party would have a limit which will be input and changed whenever wanted
+
+so read this and let me know what you understood from this
+
+--- ASSISTANT ---
+I'll read both PDFs and compare them to the current invoice model so I can confirm what you mean.
+[Tool call: Read]
+[Tool call: Read]
+[Tool call: Read]
+
+--- ASSISTANT ---
+Here’s what I understood:
+
+### Core shift
+Stop treating invoices as a flat list. The main unit becomes a **party** (customer/account), like **APEX ENGINEERING & TECHNOLOGY** or **JAI CHAND JAIN PANAGAR**.
+
+### Invoice upload (like `apex.pdf`)
+When you upload a tax invoice PDF, the app should pull and store:
+- **Party name**
+- **Invoice date** (when it came in)
+- **Line items** — products, qty, rates/pricing, amounts
+- **Invoice total**
+
+That invoice is filed **under that party**, not as a standalone orphan row.
+
+### Party section
+Each party has its own page/section with:
+1. **All their invoices**
+2. A **ledger** (like `JAI CHAND.pdf`) showing:
+   - Sales / invoices → increases what they owe (Debit)
+   - Payments received → reduces what they owe (Credit)
+   - Running **balance** = total still owed by that party
+
+### Per-invoice deadline
+Each invoice under a party can have its **own due date**, set/edited manually (not only whatever is printed on the PDF).
+
+### Party credit limit
+Each party has a **lending / credit limit** (max they can owe). Admins can set and change it anytime. Presumably you’d later warn when new invoices would push them over that limit.
+
+---
+
+**In short:** Party-centric accounts → invoices with products under each party → ledger of owed vs paid → per-invoice deadlines → editable party credit limit.
+
+Two things I want to confirm before we plan the build:
+
+1. **Ledger payments** — should staff **enter payments manually** in the app (cash/UPI/etc.), or also **upload ledger PDFs** like `JAI CHAND.pdf`?
+2. **Credit limit** — if a new invoice would push the party **over** the limit, should we only **warn**, or **block** saving that invoice?
+
+--- USER ---
+yes go ahead and make it
+
+--- ASSISTANT ---
+Building the party-centric model with invoice line items, ledgers, credit limits, and PDF extraction tuned to your MODI invoice format. Using manual payment entry and warn-on-over-limit as defaults.
+[Tool call: TodoWrite]
+[Tool call: Glob]
+[Tool call: Read]
+[Tool call: Read]
+
+--- ASSISTANT ---
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+
+--- ASSISTANT ---
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+
+--- ASSISTANT ---
+Building party list, party detail (ledger + invoices), and the updated scan flow.
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+
+--- ASSISTANT ---
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Read]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Write]
+
+--- ASSISTANT ---
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: Delete]
+[Tool call: Delete]
+[Tool call: Delete]
+
+--- ASSISTANT ---
+[Tool call: Write]
+[Tool call: StrReplace]
+[Tool call: Write]
+[Tool call: Write]
+[Tool call: StrReplace]
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: Read]
+[Tool call: StrReplace]
+[Tool call: Shell]
+[Tool call: TodoWrite]
+
+--- ASSISTANT ---
+[Tool call: AwaitShell]
+
+--- ASSISTANT ---
+Party-centric flow is in place and the app is running again.
+
+### What changed
+- **Parties** are the main unit (sidebar → Parties), not a flat invoice list
+- **Scan PDF** extracts party name, bill no, date, products/pricing, total → saves under that party + adds a **Sales** ledger row
+- **Party page**: invoices (with products + editable deadline) and a **ledger** (Dr/Cr + running balance)
+- **Credit limit** editable per party; warns if balance goes over (does not block)
+- **Payments** entered manually on the ledger tab (cash/UPI/etc.)
+- Seed data includes Apex-style + Jai Chand–style examples
+
+### Try it
+1. Open **Parties** → **JAI CHAND** or **APEX**
+2. **Scan PDF** with your `apex.pdf`
+3. Set the payment deadline → **Save under party**
+
+If the UI still shows old invoices, click **Reset demo data** in the sidebar (storage key changed to `modi-electricals-parties-v1`).
+
+--- USER ---
+electron loads a white screen right now
+
+--- ASSISTANT ---
+Checking the Electron/Vite logs and the app entry for what's causing the white screen.
+[Tool call: Read]
+[Tool call: Shell]
+
+--- ASSISTANT ---
+Infinite re-render in `PartyRow`: Zustand selectors that `.filter()` return a new array every time. Fixing those selectors.
+[Tool call: Write]
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+
+--- ASSISTANT ---
+[Tool call: AwaitShell]
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: Read]
+
+--- ASSISTANT ---
+[Tool call: StrReplace]
+[Tool call: Grep]
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: StrReplace]
+[Tool call: AwaitShell]
+
+--- ASSISTANT ---
+[Tool call: Read]
+[Tool call: Read]
+
+--- ASSISTANT ---
+Restarting the full app with the fix applied.
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: AwaitShell]
+
+--- ASSISTANT ---
+[Tool call: AwaitShell]
+[Tool call: Read]
+
+--- ASSISTANT ---
+[Tool call: Shell]
+
+--- ASSISTANT ---
+The white screen was from an infinite re-render in the parties table — Zustand selectors were returning a **new array on every render** via `.filter()`.
+
+That’s fixed and Electron is running again. You should see the dashboard with parties now. If the window still looks blank, close it and it should already be open from the restart — or say so and I’ll relaunch.
+
+--- USER ---
+Briefly inform the user about the task result and perform any follow-up actions (if needed). If there's no follow-ups needed, don't explicitly say that.
+
+--- ASSISTANT ---
+[Tool call: Shell]
+
+--- ASSISTANT ---
+That one relaunch failed because `cross-env` wasn’t on the PATH. A full restart right after fixed it — Electron and Vite are both running now.
+
+--- USER ---
+reset all demo data right now please, so I can check from scracth
+
+--- ASSISTANT ---
+Clearing persisted app data and restarting with an empty slate so you can test from scratch.
+[Tool call: Read]
+[Tool call: Shell]
+
+--- ASSISTANT ---
+Starting with an empty slate (no seed parties). The sidebar “Reset demo data” button will still restore sample data when you want it.
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: StrReplace]
+[Tool call: Shell]
+
+--- ASSISTANT ---
+[Tool call: AwaitShell]
+
+--- ASSISTANT ---
+Done. All parties, invoices, and ledger entries are cleared — you’re starting empty.
+
+The app is open again. Use **Scan PDF** with your invoice to create the first party from scratch.
+
+--- USER ---
+Briefly inform the user about the task result and perform any follow-up actions (if needed). If there's no follow-ups needed, don't explicitly say that.
+
+--- ASSISTANT ---
+[Tool call: Shell]
+
+--- ASSISTANT ---
+That earlier start was stopped when we relaunched for the data reset. The current app is still running with the empty slate.
+
+--- USER ---
+now the thing is, we also wanna add in it the payment that will go from the shop to vendors and bills of each vendor is different, so how can we make sure that each time it reads the bills correctly
+
+--- ASSISTANT ---
+Looking at how PDF extraction works today so the advice matches your setup.
+[Tool call: Read]
+[Tool call: Read]
+
+--- ASSISTANT ---
+Two separate problems: **who the bill is for**, and **how to read different PDFs**.
+
+### 1. Business side (shop → vendors)
+Today your app is built for **customers (parties)** who owe *you* (sales + receipts).
+
+Vendor bills are the opposite:
+- **Vendor** = supplier you buy from  
+- Bill = money **you owe them** (purchase / expense)  
+- Payment = money **you pay them**
+
+So you’d mirror the party model: **Vendors** with their own invoices + ledger (purchases Debit your liability / payments Credit). Don’t mix them into the same customer parties list.
+
+---
+
+### 2. Reading different vendor bills correctly
+Your current extractor in [`src/lib/pdfExtract.ts`](src/lib/pdfExtract.ts) is **hard-coded for MODI tax invoices** (`Party Name`, `Bill No`, that line-item pattern). Other vendors will use different labels, column orders, and layouts — one regex set will keep failing.
+
+**Reliable approach for a shop with many vendors:**
+
+**A. Per-vendor PDF templates (best for correctness)**  
+For each frequent vendor, save a small parser config, e.g.:
+- How to spot that vendor (GSTIN, header name, logo text)
+- Where “Invoice No”, “Date”, “Grand Total” appear (labels / regex)
+- How line items are structured  
+
+Flow:
+1. Upload PDF → extract raw text  
+2. Detect vendor (GSTIN / name match against your vendor list)  
+3. Run **that vendor’s** parser  
+4. Always show a **confirm/edit screen** before save (you already do this — keep it; it’s the safety net)
+
+**B. Confirm step is mandatory**  
+Even with good parsers, treat extraction as “draft”. Staff fix wrong amounts/dates. That’s how you stay accurate when a vendor changes their format.
+
+**C. Start with your top 5–10 vendors**  
+Don’t try to auto-read every PDF in India. Add templates as you see real bills. Unknown vendor → manual entry (or generic “best effort” + heavy confirm).
+
+**D. Optional later: AI / OCR**  
+Useful for scanned image PDFs or weird layouts. Still keep confirm + vendor template when possible; AI alone isn’t enough for accounting.
+
+---
+
+### Practical rule
+| Situation | What to do |
+|-----------|------------|
+| Known vendor, known layout | Template parser → confirm → save |
+| New vendor | Create vendor + template from 1–2 sample bills |
+| Layout changes | Update that vendor’s template |
+| Unreadable / scan | Manual entry |
+
+So: **correctness comes from vendor-specific templates + always confirming**, not from one universal “read any bill” function.
+
+If you want this built next, switch to Agent mode and share 2–3 real vendor bill PDFs — we can add a Vendors section and the first template detectors from those samples.

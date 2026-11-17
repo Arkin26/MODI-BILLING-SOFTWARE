@@ -1,0 +1,88 @@
+{
+  "name": "modi-electricals",
+  "private": true,
+  "version": "0.4.0",
+  "description": "MODI ELECTRICALS invoice management prototype",
+  "main": "electron/main.cjs",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k \"vite\" \"wait-on http://localhost:5173 && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 ELECTRON_RUN_AS_NODE= electron .\"",
+    "dev:web": "vite",
+    "electron": "cross-env ELECTRON_RUN_AS_NODE= electron .",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "oxlint",
+    "server": "npm --prefix server start",
+    "server:install": "npm --prefix server install",
+    "server:init-db": "npm --prefix server run init-db",
+    "pack:office": "node scripts/pack-office.mjs",
+    "pack:update": "node scripts/pack-update.mjs"
+  },
+  "author": "MODI ELECTRICALS",
+  "build": {
+    "appId": "com.modielectricals.app",
+    "productName": "MODI ELECTRICALS",
+    "copyright": "Copyright MODI ELECTRICALS",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "server",
+        "to": "server",
+        "filter": [
+          "**/*",
+          "!.env",
+          "!uploads",
+          "!uploads/**"
+        ]
+      },
+      {
+        "from": "release/_runtime-win",
+        "to": "runtime"
+      }
+    ],
+    "win": {
+      "signAndEditExecutable": false,
+      "target": [
+        {
+          "target": "dir",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "concurrently": "^10.0.3",
+    "cross-env": "^10.1.0",
+    "date-fns": "^4.4.0",
+    "lucide-react": "^1.24.0",
+    "pdfjs-dist": "^6.1.200",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "recharts": "^3.9.2",
+    "wait-on": "^9.0.10",
+    "zustand": "^5.0.14"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.2",
+    "@types/node": "^24.13.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "electron": "^43.1.0",
+    "electron-builder": "^26.15.3",
+    "oxlint": "^1.71.0",
+    "tailwindcss": "^4.3.2",
+    "typescript": "~6.0.2",
+    "vite": "^8.1.1"
+  }
+}

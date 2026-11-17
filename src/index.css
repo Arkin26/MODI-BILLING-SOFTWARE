@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+
+:root {
+  --modi-red: #e11d2e;
+  --modi-red-dark: #b91020;
+  --modi-red-soft: #fff1f2;
+  --modi-ink: #18181b;
+  --modi-muted: #71717a;
+  --modi-border: #e4e4e7;
+  --modi-bg: #f4f4f5;
+  --font-display: 'Outfit', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--modi-ink);
+  background: var(--modi-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 999px;
+}

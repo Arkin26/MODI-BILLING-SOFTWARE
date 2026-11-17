@@ -1,0 +1,245 @@
+import { addDays, format, subDays } from 'date-fns'
+import type { Invoice, LedgerEntry, Party, User } from '../types'
+
+const today = new Date()
+
+/** Local demo seed data only — real accounts live in local Postgres app_users. */
+export const USERS: User[] = []
+
+/** Used by “Continue without database” on the login screen. */
+export const DEMO_USERS: User[] = [
+  {
+    id: 'admin1',
+    username: 'admin',
+    name: 'Admin (Demo)',
+    email: 'admin@demo.local',
+    role: 'admin',
+  },
+  {
+    id: 'user1',
+    username: 'deepansh',
+    name: 'Deepansh (Demo)',
+    email: 'deepansh@demo.local',
+    role: 'user',
+  },
+]
+
+export const SEED_PARTIES: Party[] = [
+  {
+    id: 'party-apex',
+    name: 'APEX ENGINEERING & TECHNOLOGY',
+    address: '21, R.K. COMPLEX, CHERITAL, Jabalpur',
+    gstin: '23ACOPJ8046P1ZZ',
+    phone: '9425158904',
+    creditLimit: 100000,
+    createdAt: format(subDays(today, 60), 'yyyy-MM-dd'),
+    assignedTo: 'user1',
+  },
+  {
+    id: 'party-jai',
+    name: 'JAI CHAND JAIN PANAGAR',
+    address: 'Panagar, Jabalpur',
+    creditLimit: 50000,
+    createdAt: format(subDays(today, 90), 'yyyy-MM-dd'),
+    assignedTo: 'user2',
+  },
+  {
+    id: 'party-sharma',
+    name: 'Sharma Constructions',
+    creditLimit: 75000,
+    createdAt: format(subDays(today, 30), 'yyyy-MM-dd'),
+    assignedTo: 'user1',
+  },
+]
+
+export const SEED_INVOICES: Invoice[] = [
+  {
+    id: 'inv-apex-2910',
+    partyId: 'party-apex',
+    billNo: '2910/26-27',
+    invoiceDate: '2026-06-29',
+    dueDate: format(addDays(today, 2), 'yyyy-MM-dd'),
+    amount: 17084,
+    status: 'open',
+    pdfName: 'apex.pdf',
+    createdAt: '2026-06-29',
+    lineItems: [
+      {
+        id: 'li-1',
+        description: 'PARAS SQ BOX PVC STD',
+        hsn: '39172200',
+        qty: 24,
+        unit: 'PCS',
+        rate: 3.12,
+        amount: 74.76,
+      },
+      {
+        id: 'li-2',
+        description: 'AN LED BATTEN 20W THEA',
+        hsn: '94051010',
+        qty: 15,
+        unit: 'PCS',
+        rate: 120.01,
+        amount: 1800.1,
+      },
+      {
+        id: 'li-3',
+        description: 'RR WIRE M/STD FR 02.50MM 200M',
+        hsn: '85446020',
+        qty: 1,
+        unit: 'ROLL',
+        rate: 8097.64,
+        amount: 8097.64,
+      },
+      {
+        id: 'li-4',
+        description: 'RR WIRE M/STD FR 01.50MM 200M',
+        hsn: '85446020',
+        qty: 1,
+        unit: 'ROLL',
+        rate: 4974.4,
+        amount: 4974.4,
+      },
+    ],
+  },
+  {
+    id: 'inv-jai-3188',
+    partyId: 'party-jai',
+    billNo: '3188/26-27',
+    invoiceDate: '2026-07-10',
+    dueDate: format(today, 'yyyy-MM-dd'),
+    amount: 6672,
+    status: 'open',
+    pdfName: null,
+    createdAt: '2026-07-10',
+    lineItems: [
+      {
+        id: 'li-j1',
+        description: 'Electrical goods (sale)',
+        qty: 1,
+        unit: 'LOT',
+        rate: 6672,
+        amount: 6672,
+      },
+    ],
+  },
+  {
+    id: 'inv-jai-2569',
+    partyId: 'party-jai',
+    billNo: '2569/26-27',
+    invoiceDate: '2026-06-18',
+    dueDate: format(subDays(today, 5), 'yyyy-MM-dd'),
+    amount: 6876,
+    status: 'open',
+    pdfName: null,
+    createdAt: '2026-06-18',
+    lineItems: [
+      {
+        id: 'li-j2',
+        description: 'Electrical goods (sale)',
+        qty: 1,
+        unit: 'LOT',
+        rate: 6876,
+        amount: 6876,
+      },
+    ],
+  },
+  {
+    id: 'inv-sharma-01',
+    partyId: 'party-sharma',
+    billNo: '2401/26-27',
+    invoiceDate: format(subDays(today, 10), 'yyyy-MM-dd'),
+    dueDate: format(addDays(today, 7), 'yyyy-MM-dd'),
+    amount: 48500,
+    status: 'in_progress',
+    pdfName: null,
+    createdAt: format(subDays(today, 10), 'yyyy-MM-dd'),
+    lineItems: [
+      {
+        id: 'li-s1',
+        description: 'Wiring & fittings supply',
+        qty: 1,
+        unit: 'LOT',
+        rate: 48500,
+        amount: 48500,
+      },
+    ],
+  },
+]
+
+/** Seed ledger matching JAI CHAND style + Apex sale. */
+export const SEED_LEDGER: LedgerEntry[] = [
+  {
+    id: 'led-jai-open',
+    partyId: 'party-jai',
+    date: '2026-04-01',
+    type: 'opening',
+    particular: 'Opening Balance',
+    debit: 14626,
+    credit: 0,
+  },
+  {
+    id: 'led-jai-r1',
+    partyId: 'party-jai',
+    date: '2026-04-06',
+    type: 'receipt',
+    voucherNo: '3413',
+    particular: 'CASH',
+    debit: 0,
+    credit: 5000,
+  },
+  {
+    id: 'led-jai-s1',
+    partyId: 'party-jai',
+    date: '2026-06-18',
+    type: 'sale',
+    voucherNo: '2569/26-27',
+    particular: 'Sales',
+    debit: 6876,
+    credit: 0,
+    invoiceId: 'inv-jai-2569',
+  },
+  {
+    id: 'led-jai-r2',
+    partyId: 'party-jai',
+    date: '2026-07-07',
+    type: 'receipt',
+    voucherNo: '3795',
+    particular: 'CASH',
+    debit: 0,
+    credit: 15000,
+  },
+  {
+    id: 'led-jai-s2',
+    partyId: 'party-jai',
+    date: '2026-07-10',
+    type: 'sale',
+    voucherNo: '3188/26-27',
+    particular: 'Sales',
+    debit: 6672,
+    credit: 0,
+    invoiceId: 'inv-jai-3188',
+  },
+  {
+    id: 'led-apex-s1',
+    partyId: 'party-apex',
+    date: '2026-06-29',
+    type: 'sale',
+    voucherNo: '2910/26-27',
+    particular: 'Sales',
+    debit: 17084,
+    credit: 0,
+    invoiceId: 'inv-apex-2910',
+  },
+  {
+    id: 'led-sharma-s1',
+    partyId: 'party-sharma',
+    date: format(subDays(today, 10), 'yyyy-MM-dd'),
+    type: 'sale',
+    voucherNo: '2401/26-27',
+    particular: 'Sales',
+    debit: 48500,
+    credit: 0,
+    invoiceId: 'inv-sharma-01',
+  },
+]
